@@ -1,3 +1,6 @@
+**Alumno**: Fernando Castillo
+**Github**: https://github.com/frcastillov/SISE/tree/feature/parcial-portal
+
 # Registro de Pruebas y Correcciones
 
 | Dispositivo / Condición | Resultado                          | Evidencia / Ruta                    |

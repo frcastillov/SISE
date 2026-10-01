@@ -11,10 +11,3 @@
 | Foco visible            | Navegación por TAB funciona.       | `docs/evidencias/foco.png`          |
 | Formulario Inválido     | Bordes rojos, impide envío.        | `docs/evidencias/form-novalido.png` |
 | Formulario Válido       | Bordes verdes, simulación exitosa. | `docs/evidencias/form-valido.png`   |
-
-## Correcciones aplicadas durante el desarrollo
-
-1. **Problema:** La tabla de "Estados" causaba desbordamiento horizontal (scroll en toda la página) en 320px.
-   - **Corrección:** Se encapsuló la tabla en un `<div class="table-responsive">` con `overflow-x: auto;`.
-2. **Problema:** La etiqueta `skip-link` interfería con el diseño al usar el tabulador inicialmente.
-   - **Corrección:** Se ajustó el CSS para asegurar que tenga un `z-index` alto y fondo contrastante solo al recibir `:focus`.

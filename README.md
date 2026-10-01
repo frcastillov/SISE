@@ -1,69 +1,40 @@
-# Portal de Soporte TI — ejemplo resuelto
+# Examen Parcial de Desarrollo Web - Nova Servicios
 
-Ejemplo completo de la Guía de aprendizaje 2, sesiones 3 y 4. Incluye navbar mobile first, hero, cuatro tarjetas con Grid y formulario con validación nativa. Usa datos ficticios: Ana Prueba y ana@example.test. El botón confirma una simulación; no crea un ticket.
+**Estudiante:** Fernando Castillo Vargas
+**Código:** 2017518488
 
-## Requisitos y ejecución
+## 1. Planificación (Brief)
 
-Instala Node.js LTS (22 o superior; el flujo de clase usa 24), Git y VS Code.
-La carpeta correcta es la que contiene package.json. Ábrela con VS Code.
+Nova Servicios necesita un portal web responsive para consultar servicios y simular solicitudes de soporte TI. El sistema debe ser accesible, adaptarse a webs móviles y de escritorio, y contar con un modelo conceptual para el tracking de tickets.
 
-```bash
-npm ci
-npm run dev
-```
+## 2. Historias de Usuario (Prioridad MoSCoW)
 
-Abre http://127.0.0.1:5500. Guarda los cambios y recarga el navegador.
-Detén el servidor con Ctrl+C. El servidor local no tiene recarga automática.
-Para ver la página sin instalar dependencias puedes usar Live Server sobre public/index.html.
-Si PowerShell bloquea npm.ps1, usa npm.cmd con los mismos argumentos.
+1. **[Obligatorio]** Como usuario, quiero ver un catálogo de servicios para saber qué tipo de soporte puedo pedir. _(Criterio: 4 tarjetas visibles en pantalla)._
+2. **[Obliatorio]** Como usuario, quiero un formulario validado para simular mi solicitud de soporte. _(Criterio: Validaciones nativas y botón desactivado/activado)._
+3. **[Obligatorio]** Como usuario, quiero ver el estado de los tickets de ejemplo. _(Criterio: Tabla estática con 4 estados visible y responsive)._
+4. **[Deseable]** Como usuario, quiero leer preguntas frecuentes para resolver dudas rápidas. _(Criterio: Uso de detalles/summary para FAQ)._
+5. **[Deseable]** Como usuario con discapacidad visual, quiero que el sitio sea navegable por teclado. _(Criterio: Foco visible en todos los elementos interactivos)._
 
-```bash
-npm run format
-npm run check
-npm run check:syntax
-npm test
-```
+## 3. Wireframe (Baja fidelidad)
 
-npm ci instala la versión fijada en package-lock.json. No necesitas npm init ni
-instalar Prettier otra vez: la preparación de la sección 11 de la guía ya está hecha.
+[Encabezado y Menú de navegación]
+[Hero / Presentación Principal]
+[Catálogo de Servicios (Grid)]
+[Sección de FAQ]
+[Tabla de Estados]
+[Formulario de Solicitud de Soporte]
+[Pie de página y Contacto]
 
-## Archivos
+## 4. Reglas de Negocio del Modelo de Datos
 
-- public/index.html: estructura y formulario.
-- public/assets/css/styles.css: estilos responsive.
-- public/assets/js/ui.js: apoyo para menú y simulación, sin llamadas a una API.
-- docs/actividades.md: trabajo de las sesiones 3 y 4.
-- docs/pruebas.md: evidencia que debe completar el equipo.
-- .github/pull_request_template.md: plantilla del PR.
-- .github/workflows/calidad.yml: comprobaciones de calidad.
-- vercel.json: configuración para servir public.
-- scripts/ y tests/: servidor local y sus pruebas, ya preparados.
+- Un Usuario y un Servicio pueden tener múltiples Solicitudes (1:N).
+- Cada cambio de estado en una Solicitud genera un registro en "Actualización" (1:N).
+- Toda acción crítica (ej. cambiar prioridad) genera un registro en "Auditoría" ligado al usuario que hizo el cambio (1:N), guardando el valor anterior y nuevo.
 
-Trabaja en los archivos de public y en la documentación. No necesitas modificar
-el servidor para desarrollar esta semana.
+## 5. Análisis del caso práctico (13)
 
-## Alcance de las comprobaciones
+**Solicitudes duplicadas (1001 y 1005)**:
+Para determinar si son duplicadas, se debe comparar los campos comunes de un ticket: _id_usuario_, _id_servicio_, _tipo_incidencia_ y la **cercamía en tiempo** de _fecha_creacion_ en la tabla **Solicitud**. Si la descripción detalla el mismo problema, conservaría la solicitud más antigua (1001) para respetar el orden de cola o la que tenga la descripción más detallada, y cambiaría el estado de la otra a "Cerrado/Cancelado" agregando una nota de "Duplicado". Se entiende que esta actividad es totalmente manual y dependiente de un procedimiento de tratatmiento de solicitudes duplicadas.
 
-Actions comprueba formato, sintaxis de JavaScript y las pruebas del servidor local.
-También debes probar manualmente la interfaz, el teclado, las restricciones del formulario
-y los anchos de pantalla. Que el check pase no significa que completaste todas las actividades.
-Vercel publica el sitio por su integración con GitHub; este workflow no despliega.
-
-## Despliegue y ramas
-
-Sigue [la preparación del repositorio y de Vercel](docs/git-y-vercel.md).
-No se incluyen repositorios Git inicializados, URLs de Preview inventadas ni credenciales.
-Al publicar, completa README y el PR con tu repositorio, equipo y Preview reales.
-
-## Correspondencia con la guía
-
-Los capítulos 3 a 5 construyen la landing; 6 añade Grid; 7 a 9 completan el formulario;
-10 y 11 cubren Preview y calidad; 12 a 15 preparan la revisión y la entrega.
-El código ui.js añade guardas para funcionar mientras faltan elementos en el proyecto base.
-No requiere React, Vite, Supabase ni base de datos en esta semana.
-
-## Referencias
-
-- [Prettier: instalación reproducible](https://prettier.io/docs/install)
-- [Vercel: configuración](https://vercel.com/docs/project-configuration/vercel-json)
-- [Vercel: ambientes](https://vercel.com/docs/deployments/environments)
+**Cambio no autorizado en la prioridad (Solicitud 1002)**:
+Para investigar, relacionaría el evento de la tabla Auditoría (donde _entidad_afectada_ = 'Solicitud' y _entidad_id_ = 1002) cruzando el _id_usuario_ = 9 con la tabla Usuario. Verificaría si el rol de ese usuario es "técnico". Dado que la tabla de Auditoría guarda el valor_anterior (Media) y valor_nuevo (Alta), podemos reconocer el historial del ticket y escalar el incidente internamente si el usuario 9 no tenía los permisos para la acción **CAMBIO_PRIORIDAD**.

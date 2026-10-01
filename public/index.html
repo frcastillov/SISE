@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Portal TI | Solicitud de soporte</title>
+    <title>Nova Servicios | Portal de Soporte TI</title>
+    <meta
+      name="description"
+      content="Portal de soporte técnico de Nova Servicios. Consulta incidencias de red, hardware y software."
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <script src="assets/js/ui.js" defer></script>
   </head>
@@ -11,7 +15,7 @@
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="site-header">
       <nav class="navbar container" aria-label="Navegación principal">
-        <a class="navbar__logo" href="#inicio">Portal TI</a>
+        <a class="navbar__logo" href="#inicio">Nova Servicios</a>
         <button
           class="navbar__toggle"
           type="button"
@@ -24,41 +28,127 @@
         <ul class="navbar__menu" id="nav-menu">
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#soporte">Solicitar soporte</a></li>
+          <li><a href="#estados">Estados</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
     </header>
     <main id="contenido" class="container" tabindex="-1">
       <section class="hero" id="inicio" aria-labelledby="hero-title">
         <h1 id="hero-title">Soporte TI para tu equipo</h1>
-        <p>Consulta nuestros servicios y describe tu incidencia.</p>
+        <p>Soluciones inmediaras para que tu negocio nunca se detenga.</p>
         <a class="button" href="#soporte">Solicitar soporte</a>
       </section>
+
       <section id="servicios" aria-labelledby="services-title">
         <h2 id="services-title">Servicios de soporte</h2>
         <div class="services__grid">
-          <article class="service-card">
-            <h3>Soporte de red</h3>
-            <p>Diagnóstico de problemas de conectividad.</p>
+          <article class="service-card service-card--featured">
+            <h3>Soporte de Redes</h3>
+            <p>Diagnóstico de problemas de redes, conectividad e internet.</p>
             <a href="#soporte">Solicitar soporte de red</a>
           </article>
           <article class="service-card service-card--featured">
-            <h3>Soporte prioritario</h3>
-            <p>Evaluación de incidencias que impiden continuar el trabajo.</p>
-            <a href="#soporte">Solicitar atención prioritaria</a>
+            <h3>Recuperación de datos</h3>
+            <p>Recuperación urgente de datos en unidades mecanicas y de estado solido.</p>
+            <a href="#soporte">Solicitar atención recuperación</a>
           </article>
-          <article class="service-card">
+          <article class="service-card service-card--featured">
             <h3>Hardware</h3>
-            <p>Ayuda para equipos.</p>
+            <p>Mantenimiento y reparación de hardware.</p>
             <a href="#soporte">Solicitar soporte de hardware</a>
           </article>
-          <article class="service-card">
+          <article class="service-card service-card--featured">
             <h3>Software</h3>
-            <p>Ayuda para aplicaciones.</p>
+            <p>Instalación y configuración de aplicaciones corporativas.</p>
             <a href="#soporte">Solicitar soporte de software</a>
           </article>
         </div>
       </section>
+
+      <section id="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Preguntas Frecuentes</h2>
+        <div class="faq__container">
+          <h3>Tiempos y Atención</h3>
+          <details>
+            <summary>¿Cuál es el horario de atención?</summary>
+            <p>Atendemos de lunes a viernes de 08:00 a 18:00 horas.</p>
+          </details>
+          <details>
+            <summary>¿Cuánto tardan en responder un ticket de prioridad alta?</summary>
+            <p>Nuestro equipo técnico responde en menos de 2 horas hábiles.</p>
+          </details>
+
+          <h3>Servicios y Equipos</h3>
+          <details>
+            <summary>¿Reparan equipos de uso personal?</summary>
+            <p>
+              No, actualmente solo brindamos soporte a equipos corporativos adquiridos a
+              Nova Servicios.
+            </p>
+          </details>
+          <details>
+            <summary>
+              ¿Qué hago si he perdido acceso a los datos de mi disco duro?
+            </summary>
+            <p>Usa el formulario de abajo eligiendo el tipo de incidencia "Acceso".</p>
+          </details>
+          <details>
+            <summary>¿Puedo solicitar un nuevo monitor por aquí?</summary>
+            <p>Sí, selecciona "Hardware" y detalla tu requerimiento en la descripción.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="estados" aria-labelledby="estados-title">
+        <h2 id="estados-title">Estado de Solicitudes de Ejemplo</h2>
+        <p>Consulta el estado de los tickets recientes (Simulación).</p>
+        <div
+          class="table-responsive"
+          tabindex="0"
+          role="region"
+          aria-labelledby="estados-title"
+        >
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th scope="col">Ticket</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#1001</td>
+                <td>Soporte de Redes</td>
+                <td>2026-10-15</td>
+                <td><span class="badge badge--pendiente">Pendiente</span></td>
+              </tr>
+              <tr>
+                <td>#1002</td>
+                <td>Software</td>
+                <td>2026-10-14</td>
+                <td><span class="badge badge--proceso">En proceso</span></td>
+              </tr>
+              <tr>
+                <td>#1003</td>
+                <td>Hardware</td>
+                <td>2026-10-12</td>
+                <td><span class="badge badge--resuelto">Resuelto</span></td>
+              </tr>
+              <tr>
+                <td>#1004</td>
+                <td>Recuperación de datos</td>
+                <td>2026-10-10</td>
+                <td><span class="badge badge--cerrado">Cerrado/Cancelado</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <section id="soporte" aria-labelledby="support-title">
         <h2 id="support-title">Solicitud de soporte</h2>
         <form class="support-form" id="support-form">
@@ -120,20 +210,24 @@
               aria-describedby="descripcion-help"
             ></textarea>
             <small id="descripcion-help"
-              >De 10 a 500 caracteres. Describe el problema sin incluir
-              contraseñas.</small
+              >De 10 a 500 caracteres. No incluyas contraseñas.</small
             >
           </fieldset>
-          <button id="submit-demo" type="submit" disabled>
-            Validar solicitud de prueba
-          </button>
+          <button id="submit-demo" type="submit" disabled>Validar solicitud</button>
           <p id="form-status" role="status" aria-live="polite"></p>
-          <noscript>Activa JavaScript para ejecutar la demostración.</noscript>
         </form>
+      </section>
+
+      <section id="contacto" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contacto y Horarios</h2>
+        <p>
+          <strong>Atención al personal:</strong> Lunes a Viernes, de 08:00 a 18:00 hrs.
+        </p>
+        <p><strong>Sede central:</strong> Edificio Nova Servicios, Piso 4.</p>
       </section>
     </main>
     <footer class="container">
-      <p>Portal TI de práctica. Usa únicamente datos ficticios.</p>
+      <p>Portal TI de práctica para Nova Servicios. Usa únicamente datos ficticios.</p>
     </footer>
   </body>
 </html>

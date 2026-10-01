@@ -1,32 +1,17 @@
-# Registro de pruebas
+# Registro de Pruebas y Correcciones
 
-Completa después de ejecutar cada caso. Los resultados no están preaprobados.
+| Dispositivo / Condición | Resultado                          | Evidencia / Ruta                    |
+| :---------------------- | :--------------------------------- | :---------------------------------- |
+| Mobile (320px)          | Sin desbordamiento horizontal.     | `docs/capturas/320px.png`           |
+| Tablet (768px)          | Menú adaptado, grid de 2 columnas. | `docs/capturas/768px.png`           |
+| Desktop (1440px)        | Contenido centrado y ajustado.     | `docs/capturas/1440px.png`          |
+| Foco visible            | Navegación por TAB funciona.       | `docs/evidencias/foco.png`          |
+| Formulario Inválido     | Bordes rojos, impide envío.        | `docs/evidencias/form-novalido.png` |
+| Formulario Válido       | Bordes verdes, simulación exitosa. | `docs/evidencias/form-valido.png`   |
 
-- Estudiante / equipo:
-- Fecha y navegador:
-- Rama:
-- Commit:
-- URL Preview:
+## Correcciones aplicadas durante el desarrollo
 
-| ID  | Prueba                                   | Resultado esperado                                       | Resultado observado | Estado y evidencia |
-| --- | ---------------------------------------- | -------------------------------------------------------- | ------------------- | ------------------ |
-| R1  | 320 px                                   | Sin scroll horizontal; menú operativo                    | Pendiente           | Pendiente          |
-| R2  | 768 px                                   | Nav horizontal y Grid adaptado                           | Pendiente           | Pendiente          |
-| R3  | 1024 px                                  | Contenido centrado y tres columnas con el CSS de la guía | Pendiente           | Pendiente          |
-| R4  | Zoom 200 %                               | Texto y controles utilizables                            | Pendiente           | Pendiente          |
-| A1  | Tab y Shift+Tab                          | Orden lógico y foco visible                              | Pendiente           | Pendiente          |
-| A2  | Enter, Espacio y Escape                  | Acciones correctas y cierre del menú                     | Pendiente           | Pendiente          |
-| A3  | Radios con flechas                       | Selección única de prioridad                             | Pendiente           | Pendiente          |
-| F1  | Campos vacíos                            | No permite confirmar                                     | Pendiente           | Pendiente          |
-| F2  | Nombre de 2 caracteres                   | Se rechaza                                               | Pendiente           | Pendiente          |
-| F3  | Correo usuario@                          | Se rechaza                                               | Pendiente           | Pendiente          |
-| F4  | Sin tipo o prioridad                     | Se solicita completar                                    | Pendiente           | Pendiente          |
-| F5  | Descripción de 9 caracteres y más de 500 | Respeta mínimo y máximo                                  | Pendiente           | Pendiente          |
-| F6  | Datos ficticios válidos                  | Confirma sin enviar ni guardar                           | Pendiente           | Pendiente          |
-| P1  | Preview del PR                           | Accesible al revisor y mismo commit                      | Pendiente           | Pendiente          |
-
-Datos de prueba: Ana Prueba, ana@example.test, Red, Media y "No funciona la conexión de prueba".
-
-## Correcciones
-
-Registra problema, causa, cambio, commit y resultado de la nueva prueba.
+1. **Problema:** La tabla de "Estados" causaba desbordamiento horizontal (scroll en toda la página) en 320px.
+   - **Corrección:** Se encapsuló la tabla en un `<div class="table-responsive">` con `overflow-x: auto;`.
+2. **Problema:** La etiqueta `skip-link` interfería con el diseño al usar el tabulador inicialmente.
+   - **Corrección:** Se ajustó el CSS para asegurar que tenga un `z-index` alto y fondo contrastante solo al recibir `:focus`.
